@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////finished/////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section A - Linked List Questions
@@ -102,7 +102,23 @@ int main()
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
+	ListNode *cur;
+	cur = ll -> head;
+	int idx=0;
+	int halfidx = (ll->size)/2 ;
+	if ((ll->size)%2 != 0){
+		halfidx = (ll->size)/2 + 1;
+	}
+	while(cur != NULL ){
+		if(idx >= halfidx){
+			insertNode(resultBackList,resultBackList->size,cur->item);
+		}
+		else{
+			insertNode(resultFrontList,resultFrontList->size,cur->item);
+		}
+		cur = cur -> next;
+		idx++;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

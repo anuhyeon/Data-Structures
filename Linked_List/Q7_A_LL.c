@@ -86,10 +86,26 @@ int main()
 ////////////////////////////////////////////////////////////////////////
 
 void RecursiveReverse(ListNode **ptrHead)
-{
-	/* add your code here */
+{//RecursiveReverse(&(ll.head));
+	if(*ptrHead == NULL || (*ptrHead)->next == NULL){ //빈 연결리스트거나 단일 연결리스트 경우 패스
+		return ;
+	}
+	ListNode *firstnode,*restheadnode;
+	firstnode = *ptrHead;
+	restheadnode = (*ptrHead) -> next; //firstnode->next; 
+	
+	RecursiveReverse(&(restheadnode));
+	firstnode -> next -> next = firstnode;//restheadnode -> next = firstnode;
+	firstnode -> next = NULL;
+	*ptrHead = restheadnode;
+	
 }
-
+//주어진 코드의 의도는 연결 리스트를 재귀적으로 뒤집는 것으로 보입니다. 
+// 그러나 코드에는 작은 오류가 있어 의도한 대로 동작하지 않습니다.
+// 오류는 뒤집은 리스트를 올바르게 연결하지 않는 데 있습니다.
+// 주어진 코드에서 restheadnode -> next = firstnode; 부분은 잘못된 연결을 시도하고 있습니다.
+// 이 부분은 현재의 restheadnode의 다음 노드를 현재 노드(firstnode)로 설정하려고 합니다.
+// 그러나 이 시점에서 restheadnode는 이미 뒤집힌 리스트의 마지막 노드를 가리키므로, 이 연산은 의도한 대로 작동하지 않습니다.
 //////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){

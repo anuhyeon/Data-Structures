@@ -1,3 +1,4 @@
+///finished///
 //////////////////////////////////////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
@@ -71,7 +72,7 @@ int main()
 		case 3:
 			printf("The resulting sorted linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
+			//removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -89,8 +90,30 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int insertSortedLL(LinkedList *ll, int item)
-{
-	/* add your code here */
+{	
+	ListNode *cur;
+	int cnt = 0;
+	cur = ll->head;
+
+	if(cur == NULL){
+		printf("asdasdasd");
+		insertNode(ll,cnt,item);
+		return cnt+1;
+	}
+
+	while(cur != NULL){
+		if(cur->item == item){
+			return -1;
+		}
+		if(cur->next == NULL || (cur->item < item && item < cur->next->item ) ){
+			insertNode(ll,cnt+1,item);
+			return cnt+1;
+		}
+		cnt++;
+		cur = cur->next;
+		
+	}
+	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
