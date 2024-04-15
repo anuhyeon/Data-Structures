@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////finished//////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section C - Stack and Queue Questions
@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MIN_INT -1000
 
@@ -84,7 +85,7 @@ int main()
 			scanf("%s", str);
 			break;
         case 2:
-            if(balanced(str))
+            if(!balanced(str))
                 printf("not balanced!\n");
             else
                 printf("balanced!\n");
@@ -104,7 +105,30 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack stk;
+	char tmp;
+	stk.ll.head = NULL;
+	stk.ll.size = 0;
+	int length = strlen(expression);
+	printf("%d\n",length);
+	for(int i = 0;i<length;i++){
+		if(expression[i] == '(' || expression[i] == '{' || expression[i] == '['){
+			push(&stk,expression[i]);
+		}
+		else{
+			if(isEmptyStack(&stk)){
+				return 0;
+			}
+			tmp = pop(&stk);
+			if((tmp == '(' && expression[i] != ')') || (tmp == '{' && expression[i] != '}') || (tmp == '[' && expression[i] != ']')){
+				return 0;
+			}
+		}
+	}	
+	printf("%d\n",stk.ll.size);
+	printf("%d\n",isEmptyStack(&stk));
+	
+	return isEmptyStack(&stk);
 }
 
 ////////////////////////////////////////////////////////////
