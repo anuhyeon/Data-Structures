@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+///finished///////////////////////////////////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section A - Linked List Questions
@@ -103,7 +103,24 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+    ListNode *cur1, *cur2;
+	cur1 = ll1->head;
+	cur2 = ll2->head;
+	int idx = 0;
+	int gap = ll2->size - ll1->size;
+	while(cur2 != NULL){
+		if(ll2->size == gap){
+			break;
+		}
+		if(ll2->size <= 0){
+			break;
+		}
+		insertNode(ll1,idx+1,cur2->item);
+		cur2 = cur2 -> next;
+		removeNode(ll2,0);
+		idx +=2;
+		
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

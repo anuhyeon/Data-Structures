@@ -86,11 +86,38 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
-int moveMaxToFront(ListNode **ptrHead)
-{
-    /* add your code here */
-}
+int moveMaxToFront(ListNode **ptrHead){ //moveMaxToFront(&(ll.head))
+	ListNode *cur;
+	ListNode *maxnode, *maxnodeprev = NULL, *prev = NULL;
+	cur = *ptrHead;
+	maxnode = *ptrHead;
+   
+	if(*ptrHead == NULL || (*ptrHead)->next ==NULL){ // 노드가 하나도 없거나 하나있는 경우
+		return 0;
+	} 
+	while(cur != NULL){// && (*cur)->next
+		if(cur -> item > maxnode -> item){
+			maxnodeprev = prev;
+			maxnode = cur;
+		}
+		prev = cur;
+		cur = cur -> next;
+		
+	}
+	if (maxnode != *ptrHead){ // 이미 노드 맨 앞이 최대값이 아닌경우만
+		maxnodeprev -> next = maxnode -> next;
+		maxnode -> next = *ptrHead;
+		*ptrHead = maxnode;
+		
+	}
+	return 0;
+	 
 
+}
+//ListNode **cur; // 리스트노드의 포인터 형을 가리킬 수 있는 변수
+//cur = ptrHead; // 단일 포인터인 경우일때 cur 과 지금 이중포인터일떄 *cur 의 역할이 똑같음
+// cur = &(*cur) -> next;
+// cur = &((*cur) -> next);
 //////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){
@@ -213,3 +240,4 @@ void removeAllItems(LinkedList *ll)
 	ll->head = NULL;
 	ll->size = 0;
 }
+

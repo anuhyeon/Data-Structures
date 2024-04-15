@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////finished///////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section A - Linked List Questions
@@ -86,7 +86,21 @@ int main()
 
 void moveEvenItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	ListNode *cur = ll->head;
+	int originalSize = ll->size;
+	int idx = 0,cnt = 0;
+	while(cur != NULL && idx+cnt< originalSize){
+		if(cur->item % 2 == 0){
+			insertNode(ll,ll->size,cur->item);
+			cur = cur -> next;
+			removeNode(ll,idx);
+			cnt++;
+		}
+		else{
+		cur = cur -> next;
+		idx++;
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
