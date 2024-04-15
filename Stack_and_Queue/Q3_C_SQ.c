@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////finished////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section C - Stack and Queue Questions
@@ -9,6 +9,7 @@ Purpose: Implementing the required functions for Question 3 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
 
 //////////////////////////////////   linked list /////////////////////////////////
 
@@ -101,9 +102,19 @@ int main()
 
 /////////////////////////////////////////////////////////////////////////////////
 
-int isStackPairwiseConsecutive(Stack *s)
+int isStackPairwiseConsecutive(Stack *s) //odd 홀수 even 짝수
 {
-  /* add your code here */
+  int gap = 0;
+  if((s->ll.size)%2 != 0){
+	return 0;
+  }
+  while(!isEmptyStack(s)){
+	if(abs(pop(s) - pop(s)) != 1){
+		return 0;
+	}
+  }
+  return 1;
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

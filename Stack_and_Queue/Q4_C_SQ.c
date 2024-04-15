@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////finished///////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section C - Stack and Queue Questions
@@ -112,7 +112,16 @@ int main()
 
 void reverse(Queue *q)
 {
-/* add your code here */
+	Stack stk;
+	stk.ll.head =NULL;
+	stk.ll.size =0;
+	stk.ll.tail=NULL;
+	while(!isEmptyQueue(q)){
+		push(&(stk),dequeue(q));
+	}
+	while(!isEmptyStack(&(stk))){
+		enqueue(q,pop(&(stk)));
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
