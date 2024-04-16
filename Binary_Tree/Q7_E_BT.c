@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -101,8 +102,26 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int smallestValue(BTNode *node)
-{
-	/* add your code here */
+{  
+	if(node == NULL){
+        return INT_MAX;
+    }
+    int min = node -> item;
+    int leftmin = smallestValue(node->left);
+    int rightmin = smallestValue(node->right);
+    // if(min < leftmin && min < rightmin){
+    //     return min;
+    // }
+    if(leftmin < rightmin){
+        return leftmin;
+    }
+    if(leftmin > rightmin){
+        return rightmin;
+    }
+   
+   return min;
+
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////
