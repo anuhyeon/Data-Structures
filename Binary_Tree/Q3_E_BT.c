@@ -101,7 +101,19 @@ int main()
 int countOneChildNodes(BTNode *node)
 
 {
-    /* add your code here */
+   if(node == NULL){
+    return 0;
+   }
+   else if(node -> left != NULL && node -> right == NULL){ // 왼쪽 자식 하나만 있는 경우
+    return countOneChildNodes(node -> left) + 1;
+   } 
+   else if (node -> right != NULL && node -> left == NULL){ // 오른쪽 자식 하나만 있는 경우
+    return countOneChildNodes(node -> right) + 1;
+   }
+   else{
+    return countOneChildNodes(node -> left) + countOneChildNodes(node -> right);
+   }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

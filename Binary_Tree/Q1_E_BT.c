@@ -116,7 +116,16 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
+     // 두 노드 모두 NULL이면 구조적으로 동일
+    if (tree1 == NULL && tree2 == NULL) {
+        return 1;
+    }
+    // 두 노드 중 하나만 NULL이면 구조적으로 다름
+    if (tree1 == NULL || tree2 == NULL) {
+        return 0;
+    }
+    // 두 노드 모두 존재하므로, 자식 노드들의 구조를 재귀적으로 비교
+    return identical(tree1->left, tree2->left) && identical(tree1->right, tree2->right);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

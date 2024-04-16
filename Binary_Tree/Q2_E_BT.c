@@ -95,9 +95,20 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int maxHeight(BTNode *node)
+{ //c = maxHeight(root);
+    if(node == NULL){ // // 비어있는 트리의 높이는 -1로 정의
+        return -1;
+    }
+    int leftHeight = maxHeight(node -> left); // 왼쪽 자식을 통해 얻은 높이
+    int rightHeight = maxHeight(node -> right);  // 오른쪽 자식을 통해 얻은 높이
 
-{
-    /* add your code here */
+    if(leftHeight > rightHeight){
+        return leftHeight + 1; // 더 큰 높이에 1을 더해 반환
+    }
+    else{
+        return rightHeight + 1;
+    }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

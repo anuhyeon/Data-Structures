@@ -100,9 +100,25 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int hasGreatGrandchild(BTNode *node)
+int hasGreatGrandchild(BTNode *node) //노드의 깊이(depth)를 반환하는 함수임, 그리고 깊이가 3 이상이면 해당 노드값을 출력
 {
-	/* add your code here */
+	if(node == NULL){ //노드가 NULL인 경우, 깊이는 0으로 간주
+        return 0;
+    }
+     // 왼쪽과 오른쪽 자식 노드의 깊이를 계산
+    int leftdepth = hasGreatGrandchild(node -> left);
+    int rightdepth = hasGreatGrandchild(node -> right);
+
+    int depth = (leftdepth > rightdepth ? leftdepth : rightdepth) + 1; //현재 노드의 깊이는 자식 노드의 깊이 중 더 큰 값에 1을 더한 값
+
+    if(depth > 3){
+        printf("%d ", node -> item);
+        printf("\n");
+    }
+
+    // 현재 노드의 깊이 반환
+    return depth;
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////
