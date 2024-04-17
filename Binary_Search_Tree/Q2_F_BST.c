@@ -88,9 +88,31 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void inOrderTraversal(BSTNode *root)
-{
-	 /* add your code here */
+void inOrderTraversal(BSTNode *root)  // 이진트리의 모양이 다르더라도 전위 중위 후위 순회 결과는 항상 동일
+{	
+	if(root == NULL){
+		return ;
+	}
+
+	Stack s;
+	s.top = NULL;
+	BSTNode *cur;
+	cur = root;
+
+	while(!isEmpty(&s) || cur != NULL){	// 스택이 비어있고 cur이 NULL이면 멈춤 --> 스택이 안비어있거나 cur이 널이 아니면 계쏙 진행
+		while(cur != NULL){ // 루트 노드부터 왼쪽에 있는 자식들 push
+			push(&s,cur);
+			cur = cur -> left;
+		}
+
+		cur = pop(&s); // pop 한 노드를 현재 노드로 변경
+		printf("%d ", cur -> item);
+		cur = cur -> right; // 현재 노드의 오른쪽 자식으로 노드 병경
+
+	}
+
+	
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
