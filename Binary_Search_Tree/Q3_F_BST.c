@@ -1,4 +1,10 @@
 //////////////////////////////////////////////////////////////////////////////////
+/*
+이진 검색 트리는 입력 순서에 따라 트리의 모양이 변할 수 있다. 이에 따라서 전위 중위 후위 순회 결과는 어떻게 되는지 알아보자.
+1. 전위, 후위 순회는 트리의 모양이 바뀜에 따라 결과가 바뀜
+2. 중위 순회는 트리의 모양이 바뀜에 따라 결과 바뀌지 않음 항상 동일
+
+*/
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section F - Binary Search Trees Questions
@@ -89,9 +95,28 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void preOrderIterative(BSTNode *root)
+void preOrderIterative(BSTNode *root) // dfs랑 똑같
 {
-	 /* add your code here */
+	if(root == NULL){
+		return ;
+	}
+	Stack s;
+	s.top = NULL;
+	BSTNode *cur;
+	cur = root;
+	push(&s,cur);
+	while(!isEmpty(&s)){
+		//printf("%d \n", peek(&s) -> item);
+		cur = pop(&s);
+		printf("%d ",cur->item);
+		if(cur->right != NULL){ // 오른쪽 자식이 나중에 나와야하니깐 스택에 먼저 추가
+			push(&s,cur->right);
+		}
+		if(cur->left != NULL){ // 그다음 왼쪽 자식 추가
+			push(&s,cur->left);
+		}
+
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
